@@ -44,6 +44,7 @@ export interface PrivateJet extends FlightBase {
 export interface MilitaryFlight extends FlightBase {
   type: "military_flight";
   military_type?: "heli" | "fighter" | "tanker" | "cargo" | "recon" | "default";
+  force?: string;
 }
 
 export interface TrackedFlight extends FlightBase {
@@ -68,6 +69,7 @@ export interface UAV extends FlightBase {
   uav_type?: string;
   aircraft_model?: string;
   wiki?: string;
+  force?: string;
 }
 
 export type Flight = CommercialFlight | PrivateFlight | PrivateJet | MilitaryFlight | TrackedFlight | UAV;
@@ -220,6 +222,15 @@ export interface DataCenter {
   city?: string;
   country?: string;
   zip?: string;
+  lat: number;
+  lng: number;
+}
+
+export interface MilitaryBase {
+  name: string;
+  country: string;
+  operator: string;
+  branch: string;
   lat: number;
   lng: number;
 }
@@ -404,6 +415,7 @@ export interface DashboardData {
   internet_outages?: InternetOutage[];
   firms_fires?: FireHotspot[];
   datacenters?: DataCenter[];
+  military_bases?: MilitaryBase[];
 }
 
 // ─── COMPONENT PROPS ────────────────────────────────────────────────────────
@@ -432,6 +444,7 @@ export interface ActiveLayers {
   firms: boolean;
   internet_outages: boolean;
   datacenters: boolean;
+  military_bases: boolean;
 }
 
 export interface SelectedEntity {
